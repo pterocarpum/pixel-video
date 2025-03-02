@@ -2,8 +2,23 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 video {
     display: none;
+}
+
+input[type="range"] {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 0.75;
+    width: 180px;
 }

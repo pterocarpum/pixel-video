@@ -1,9 +1,16 @@
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
+const slider = document.getElementById('slider');
 const ctx = canvas.getContext("2d");
-const startBtn = document.getElementById("start");
 
+let PIXEL_SIZE = slider.value;
 let LOW_HEIGHT, LOW_WIDTH;
+
+slider.addEventListener('input', () => {
+    PIXEL_SIZE = parseInt(slider.value);
+    LOW_HEIGHT = Math.floor(video.videoHeight / PIXEL_SIZE);
+    LOW_WIDTH = Math.floor(video.videoWidth / PIXEL_SIZE);
+});
 
 async function startVideo() {
     try {
@@ -11,8 +18,8 @@ async function startVideo() {
         video.srcObject = stream;
     
         video.onloadedmetadata = () => {
-            LOW_HEIGHT = Math.floor(video.videoHeight/7);
-            LOW_WIDTH = Math.floor(video.videoWidth/7);
+            LOW_HEIGHT = Math.floor(video.videoHeight/PIXEL_SIZE);
+            LOW_WIDTH = Math.floor(video.videoWidth/PIXEL_SIZE);
             requestAnimationFrame(processFrame);
         };
     } catch (error) {
